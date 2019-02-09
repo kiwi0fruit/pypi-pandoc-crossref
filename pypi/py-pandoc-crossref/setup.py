@@ -115,7 +115,7 @@ setup(
     version=version,
     cmdclass={'install': PostInstallCommand},
     python_requires='>=3.6',
-    description='Pandoc in pip and conda',
+    description='pandoc-crossref in pip and conda',
     url='https://github.com/kiwi0fruit/py-pandoc-crossref',
     author='kiwi0fruit',
     author_email='peter.zagubisalo@gmail.com',
