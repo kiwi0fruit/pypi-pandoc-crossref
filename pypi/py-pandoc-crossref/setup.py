@@ -22,16 +22,16 @@ version = '0.3.4.0'
 tmp = 'tmp'
 spec = dict(
     Windows=dict(
-        os='win', move=[('Library/bin', tmp)], version=version, build=0,
-        hash='04f1a3e6b05714627872fade3301c3cb057494282ce3a5cb8febab0bc29317d4'),
+        os='win', move=[('Library/bin', tmp)], version=version, build=1,
+        hash='013acf9db3aab6a20e33ccc9b5a125c3269c71122382f906f3ed5d14bbb10c64'),
     Linux=dict(
-        os='linux', move=[('bin', tmp)], version=version, build=0,
-        hash='344b57466e76d50e5519823ba385aae50fc42683c933d6c17d9f47fed41cfbf9'),
+        os='linux', move=[('bin', tmp)], version=version, build=1,
+        hash='ea1afc3d864ebd955e875cf8dd61ca0f52674df367db4188303e0fb9ca5e41fb'),
     Darwin=dict(
-        os='osx', move=[('bin', tmp)], version=version, build=0,
-        hash='92319289025f2d79a2a69292364121c8e171c57d734a82fa5b2f1eca86e8f9ad'),
+        os='osx', move=[('bin', tmp)], version=version, build=1,
+        hash='b474df3a8c44d68859efc911ff89fcba963eb4ba8a6674e6d5cfe4942c0bfc96'),
 )[platform.system()]
-url = 'https://anaconda.org/conda-forge/pandoc/{version}/download/{os}-64/pandoc-{version}-{build}.tar.bz2'.format(**spec)
+url = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
 
 
 class PostInstallCommand(install):
@@ -127,4 +127,5 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
     ],
+    install_requires=['py-pandoc>=2.5,<2.6'],
 )
