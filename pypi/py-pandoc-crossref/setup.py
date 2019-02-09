@@ -31,12 +31,12 @@ spec = dict(
         os='osx', move=[('bin', tmp)], version=version, build=1,
         hash='b474df3a8c44d68859efc911ff89fcba963eb4ba8a6674e6d5cfe4942c0bfc96'),
 )[platform.system()]
-url = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
+URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
 
 
 class PostInstallCommand(install):
     def run(self):
-        excract_tar_and_move_files(url=url, **spec)
+        excract_tar_and_move_files(url=URL, **spec)
         move_contents(
             from_=p.join(src_dir, tmp),
             to=self.install_scripts,
