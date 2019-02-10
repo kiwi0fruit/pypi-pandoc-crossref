@@ -1,3 +1,8 @@
+conda = False
+# --------------------------
+#
+#
+# --------------------------
 from setuptools import setup
 from setuptools.command.install import install
 import os
@@ -113,7 +118,6 @@ def excract_tar_and_move_files(url, hash, move, **kwargs):
 setup(
     name='py-pandoc-crossref',
     version=version,
-    cmdclass={'install': PostInstallCommand},
     python_requires='>=3.6',
     description='pandoc-crossref in pip and conda',
     url='https://github.com/kiwi0fruit/py-pandoc-crossref',
@@ -128,4 +132,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=['py-pandoc>=2.5,<2.6'],
+    **(dict(
+        cmdclass={'install': PostInstallCommand}
+    ) if not conda else {})
 )
