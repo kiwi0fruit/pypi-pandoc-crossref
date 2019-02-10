@@ -23,17 +23,17 @@ def assert_64_bit_os():
 # Custom settings:
 # ------------------------------------------------------------------------------
 assert_64_bit_os()
-version = '0.3.4.0'
+version = '0.3.4.0.1'
 tmp = 'tmp'
 spec = dict(
     Windows=dict(
-        os='win', move=[('Library/bin', tmp)], version=version, build=1,
+        os='win', move=[('Library/bin', tmp)], version='0.3.4.0', build=1,
         hash='013acf9db3aab6a20e33ccc9b5a125c3269c71122382f906f3ed5d14bbb10c64'),
     Linux=dict(
-        os='linux', move=[('bin', tmp)], version=version, build=1,
+        os='linux', move=[('bin', tmp)], version='0.3.4.0', build=1,
         hash='ea1afc3d864ebd955e875cf8dd61ca0f52674df367db4188303e0fb9ca5e41fb'),
     Darwin=dict(
-        os='osx', move=[('bin', tmp)], version=version, build=1,
+        os='osx', move=[('bin', tmp)], version='0.3.4.0', build=1,
         hash='b474df3a8c44d68859efc911ff89fcba963eb4ba8a6674e6d5cfe4942c0bfc96'),
 )[platform.system()]
 URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
