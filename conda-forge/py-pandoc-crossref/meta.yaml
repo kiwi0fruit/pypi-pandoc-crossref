@@ -1,6 +1,6 @@
 {% set name = "py-pandoc-crossref" %}
 {% set version = "0.3.4.0" %}
-{% set pypi_build = ".1" %}
+{% set pypi_build = ".2" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}{{ pypi_build }}.tar.gz
-  sha256: 78b7e27b1ee845e03fff3ac385859f0abc0000a2702801b67d00f23c1d599140
+  sha256: a8e5cdcd58fb1faa8674179187416272824791906661b754483da69e133b855e
   patches:
     - conda.patch
 
@@ -24,7 +24,7 @@ requirements:
   run:
     - python >=3.6
     - pandoc-crossref ={{ version }}
-    - py-pandoc >=2.5,<2.6
+    - py-pandoc >=2.5,<2.6.1
 
 test:
   commands:
