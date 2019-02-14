@@ -23,7 +23,7 @@ def assert_64_bit_os():
 # Custom settings:
 # ------------------------------------------------------------------------------
 assert_64_bit_os()
-version = '0.3.4.0.1'
+version = '0.3.4.0.2'
 tmp = 'tmp'
 spec = dict(
     Windows=dict(
@@ -131,7 +131,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
     ],
-    install_requires=['py-pandoc>=2.5,<2.6'],
+    install_requires=['py-pandoc>=2.5,<2.6.1'],
     **(dict(
         cmdclass={'install': PostInstallCommand}
     ) if not conda else {})
