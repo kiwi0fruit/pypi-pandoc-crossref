@@ -23,18 +23,18 @@ def assert_64_bit_os():
 # Custom settings:
 # ------------------------------------------------------------------------------
 assert_64_bit_os()
-version = '0.3.4.0.2'
+version = '0.3.4.0.2.6'
 tmp = 'tmp'
 spec = dict(
     Windows=dict(
-        os='win', move=[('Library/bin', tmp)], version='0.3.4.0', build=1,
-        hash='013acf9db3aab6a20e33ccc9b5a125c3269c71122382f906f3ed5d14bbb10c64'),
+        os='win', move=[('Library/bin', tmp)], version=version, build=0,
+        hash='4b452dda936630ce12a964e1c4d88ab3657a8902b3c1498ae821955d1fe16402'),
     Linux=dict(
-        os='linux', move=[('bin', tmp)], version='0.3.4.0', build=1,
-        hash='ea1afc3d864ebd955e875cf8dd61ca0f52674df367db4188303e0fb9ca5e41fb'),
+        os='linux', move=[('bin', tmp)], version=version, build=0,
+        hash='63312f60028bbad2346a8ea19dec53e891eefafaf62fd89f75b7166c968ad166'),
     Darwin=dict(
-        os='osx', move=[('bin', tmp)], version='0.3.4.0', build=1,
-        hash='b474df3a8c44d68859efc911ff89fcba963eb4ba8a6674e6d5cfe4942c0bfc96'),
+        os='osx', move=[('bin', tmp)], version=version, build=0,
+        hash='557e39450710870912349fa189400b87466a23e06193fde497e9ff3886e54137'),
 )[platform.system()]
 URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
 
@@ -131,7 +131,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
     ],
-    install_requires=['py-pandoc>=2.5,<2.6.1'],
+    install_requires=['py-pandoc>=2.6,<2.7'],
     **(dict(
         cmdclass={'install': PostInstallCommand}
     ) if not conda else {})
