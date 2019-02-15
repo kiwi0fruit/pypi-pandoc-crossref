@@ -1,4 +1,4 @@
-{% set version = "0.3.4.0" %}
+{% set version = "0.3.4.0.2.6" %}
 
 package:
   name: pandoc-crossref
@@ -15,7 +15,7 @@ source:
   sha256: 4ee21c1321fee42283dbd913675e8029b5153ab0f0ef83fa082533b1211fc0da  # [win]
 
 build:
-   number: 3
+   number: 0
 
 requirements:
   run:
