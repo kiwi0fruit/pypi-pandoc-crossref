@@ -119,7 +119,7 @@ setup(
     name='py-pandoc-crossref',
     version=version,
     python_requires='>=3.6',
-    description='pandoc-crossref in pip and conda',
+    description='Installs pandoc-crossref conda package in pip and conda.',
     url='https://github.com/kiwi0fruit/py-pandoc-crossref',
     author='kiwi0fruit',
     author_email='peter.zagubisalo@gmail.com',
