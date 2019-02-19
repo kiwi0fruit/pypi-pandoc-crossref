@@ -1,5 +1,6 @@
 {% set name = "py-pandoc-crossref" %}
-{% set version = "0.3.4.0.2.6" %}
+{% set version = "0.3.4.0.3" %}
+{% set dep_ver = "0.3.4.0.2.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7d11c4e52454192b699e75e052e5cfe24b33d73e2c1d33053ec6748c005efc39
+  sha256: 6bb81fbe24b5a21e53beafdc7a3dda4a0dacb63fbc80eabcd029dc920f1492a0
   patches:
     - conda.patch
 
@@ -22,7 +23,7 @@ requirements:
     - pip
   run:
     - python >=3.6
-    - pandoc-crossref ={{ version }}
+    - pandoc-crossref ={{ dep_ver }}
     - py-pandoc >=2.6,<2.7
 
 test:
@@ -35,7 +36,7 @@ about:
   license: "GPLv2+"
   license_family: GPL
   license_file: LICENSE
-  summary: "pandoc-crossref in pip and conda."
+  summary: "Installs pandoc-crossref conda package in pip and conda."
   doc_url: https://github.com/kiwi0fruit/py-pandoc-crossref
   dev_url: https://github.com/kiwi0fruit/py-pandoc-crossref
 
