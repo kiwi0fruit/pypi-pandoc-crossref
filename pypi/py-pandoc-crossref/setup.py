@@ -6,6 +6,7 @@ conda = False
 from setuptools import setup
 from setuptools.command.install import install
 import os
+import io
 import os.path as p
 import platform
 import shutil
@@ -19,11 +20,21 @@ def assert_64_bit_os():
         raise RuntimeError('Only 64bit OS is supported.')
 
 
+def read_pythonic_config(file_path, vars_):
+    import configparser
+    from ast import literal_eval
+    with io.open(file_path, 'r', encoding='utf-8') as f:
+        config = configparser.ConfigParser()
+        config.read_string('[_]\n' + f.read())
+    return [literal_eval(config.get('_', var)) for var in vars_]
+
+
 # ------------------------------------------------------------------------------
 # Custom settings:
 # ------------------------------------------------------------------------------
+# version = read_pythonic_config(p.join(src_dir, 'py_pandoc', 'version.py'), ['version'])[0]
 assert_64_bit_os()
-version, build = '0.3.4.0', '.5'
+version, build = '0.3.4.0', '.6'
 conda_version = version + '.3'
 tmp = 'tmp'
 spec = dict(
@@ -37,6 +48,7 @@ spec = dict(
         os='osx', move=[('bin', tmp)], version=conda_version, build=0,
         hash_='3d067903ffc4bd8ebc3801d8c99aee998e64cc6235bdbd80210a0443f52a6e65'),
 )[platform.system()]
+# spec = spec.get(platform.system(), spec['Linux'])
 URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
 
 
@@ -122,11 +134,19 @@ def excract_tar_and_move_files(url, hash_, move, **kwargs):
     shutil.rmtree(dirpath)
 
 
+# ------------------------------------------------------------------------------
+# Custom settings:
+# ------------------------------------------------------------------------------
+# with io.open(p.join(src_dir, 'README.md'), encoding='utf-8') as f:
+#     long_description = f.read()
+
 setup(
     name='py-pandoc-crossref',
     version=version + build,
     python_requires='>=3.6',
     description='Installs pandoc-crossref conda package in pip and conda.',
+    # long_description=long_description,
+    # long_description_content_type="text/markdown",
     url='https://github.com/kiwi0fruit/py-pandoc-crossref',
     author='kiwi0fruit',
     author_email='peter.zagubisalo@gmail.com',
