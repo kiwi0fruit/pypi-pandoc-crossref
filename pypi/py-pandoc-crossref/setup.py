@@ -40,13 +40,13 @@ tmp = 'tmp'
 spec = dict(
     Windows=dict(
         os='win', move=[('Library/bin', tmp)], version=conda_version, build=0,
-        hash_='c93eed087d286e6d9d57375b1c7b64ea59f1e3a5a5fba07931389e934307db12'),  # TODO
+        hash_='c2cd6b09efbc28325e5e6fc41f32fd6e0808f1a9a9e65e0230346163325375f4'),
     Linux=dict(
         os='linux', move=[('bin', tmp)], version=conda_version, build=0,
-        hash_='b7b945db3535425bed67f64ce24e349bebdd86095698052c6cf5fee7a7d60138'),  # TODO
+        hash_='dddca6ff3b5b59a2912e68acc27d921a542bd027d4120998ab70abd99452adfd'),
     Darwin=dict(
         os='osx', move=[('bin', tmp)], version=conda_version, build=0,
-        hash_='3d067903ffc4bd8ebc3801d8c99aee998e64cc6235bdbd80210a0443f52a6e65'),  # TODO
+        hash_='1d15c10d91752cf4bcf1e502e136b3541d571d056693b62fad7948649a0b07ad'),
 )[platform.system()]
 # spec = spec.get(platform.system(), spec['Linux'])
 URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
