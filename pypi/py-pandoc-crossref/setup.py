@@ -35,22 +35,22 @@ def read_pythonic_config(file_path, vars_):
 # version = read_pythonic_config(p.join(src_dir, 'py_pandoc', 'version.py'), ['version'])[0]
 assert_64_bit_os()
 py_pandoc_dep = 'py-pandoc>=2.9.2.1,<2.10'
-version, build = '0.3.6.4', ''  # '...', '.1'
+version, build = '0.3.6.3', ''  # '...', '.1'
 conda_version = version + ''  # ... + '.1'
 tmp = 'tmp'
 spec = dict(
     Windows=dict(
-        os='win', move=[('Library/bin', tmp)], version=conda_version, build=0,
-        hash_='e5bdf414a4790cbc5b71b2e34719c2a7436991c951a5a5a4d4b34cad16bbd87f'),
+        os='Windows', move=[('Library/bin', tmp)], version=conda_version, build=0,
+        hash_='aee00b0eb376032c8b09ecf5384e194f61b078eb4840281ead34baa8d1206feb'),
     Linux=dict(
-        os='linux', move=[('bin', tmp)], version=conda_version, build=0,
-        hash_='006e990c0aedc6ef092bb4592eb57568878a3b4d9f8f16cc5c4293a78bd84409'),
+        os='Linux', move=[('bin', tmp)], version=conda_version, build=0,
+        hash_='19ff5f0af8706598e90d164d577ce7fc7d0e403fbe5e3d41c1e3e2cbf26ecb26'),
     Darwin=dict(
-        os='osx', move=[('bin', tmp)], version=conda_version, build=0,
-        hash_='d7237e322d1dd67f2f3de41b3852da59869da8ae3764849da8d9cc4831094aa6'),
+        os='macOS', move=[('bin', tmp)], version=conda_version, build=0,
+        hash_='b827af066b44cbe30d71332d7ae766c427c3de2f0d11d9c2374a8b25299dfc41'),
 )[platform.system()]
 # spec = spec.get(platform.system(), spec['Linux'])
-URL = 'https://anaconda.org/conda-forge/pandoc-crossref/{version}/download/{os}-64/pandoc-crossref-{version}-{build}.tar.bz2'.format(**spec)
+URL = 'https://github.com/lierdakil/pandoc-crossref/releases/download/v{version}/pandoc-crossref-{os}-2.9.2.1.tar.xz'.format(**spec)
 
 
 class PostInstallCommand(install):
