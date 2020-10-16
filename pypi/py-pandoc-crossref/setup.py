@@ -35,7 +35,7 @@ def read_pythonic_config(file_path, vars_):
 # version = read_pythonic_config(p.join(src_dir, 'py_pandoc', 'version.py'), ['version'])[0]
 assert_64_bit_os()
 py_pandoc_dep = 'py-pandoc>=2.9.2.1,<2.10'
-version, build = '0.3.6.3', ''  # '...', '.1'
+version, build = '0.3.6.2', '.1'  # '...', '.1'
 conda_version = version + ''  # ... + '.1'
 tmp = 'tmp'
 spec = dict(
@@ -107,21 +107,22 @@ def excract_tar_and_move_files(url, hash_, move, **kwargs):
         req_text = '{url} --hash=sha256:{hash_}\n'.format(url=url, hash_=hash_)
         print(req_text, file=open(req_path, 'w', encoding='utf-8'))
 
-        proc = run([sys.executable, "-m", "pip", "download", "--require-hashes", "-b", temp_dir, "--no-clean", "-r", req_path],
-                   stdout=PIPE, stderr=PIPE, encoding='utf-8', env={**dict(os.environ), **dict(TMPDIR=temp_dir, TEMP=temp_dir)})
+        proc = run([sys.executable, "-m", "pip", "download", "--require-hashes", "--no-clean", "-r", req_path],
+                   stdout=PIPE, stderr=PIPE, encoding='utf-8', env={**dict(os.environ), **dict(TMPDIR=temp_dir, TEMP=temp_dir, TMP=temp_dir)})
 
         if proc.stderr is None:
             raise AssertionError('pip download behaviour changed. Downgrade pip or wait for bugfix.\n' + 'assert proc.stderr is not None')
         stderr = str(proc.stderr)
-        if not (('FileNotFoundError' in stderr) and ('setup.py' in stderr)):
-            raise AssertionError('pip download behaviour changed. Downgrade pip or wait for bugfix.\n' + stderr)
-        pip_tmp_dirs = os.listdir(temp_dir)
-        if len(pip_tmp_dirs) != 1:
-            raise AssertionError('pip download behaviour changed. Downgrade pip or wait for bugfix.\n' + 'assert len(pip_tmp_dirs) == 1')
-
         if 'sha256' in stderr.lower():
             raise AssertionError(stderr)
-        pip_tmp_dir = p.join(temp_dir, pip_tmp_dirs[0])
+        if not (('FileNotFoundError' in stderr) and ('setup.py' in stderr)):
+            raise AssertionError('pip download error:\n\n{}\n\nOr pip download behaviour changed. Downgrade pip or wait for bugfix in this case.'.format(stderr))
+        pip_tmp_dirs = os.listdir(temp_dir)
+        pip_build_dirs = [s for s in pip_tmp_dirs if 'build' in s]
+        if len(pip_build_dirs) != 1:
+            raise AssertionError('pip download behaviour changed. Downgrade pip or wait for bugfix.\n' + 'assert len(pip_build_dirs) == 1; pip_tmp_dirs == {}'.format(pip_tmp_dirs))
+
+        pip_tmp_dir = p.join(temp_dir, pip_build_dirs[0])
 
         for _, to in move:
             to = p.normpath(p.join(src_dir, to))
